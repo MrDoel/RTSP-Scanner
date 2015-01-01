@@ -45,6 +45,7 @@ function head {
 
 #Baca Network ID
 head
+echo -e "${rd}Press ctrl+c to exit${fin}"
 echo -en "${lcyn}Scanning Name ~>${fin} "
 read COMPANY
 echo -en "{lcyn}Input Network ID (1) ~>${fin} "
@@ -58,7 +59,6 @@ read BATAS_AWAL
 echo -en "{lcyn}Input Range Akhir ~> ${fin}"
 read BATAS_AKHIR
 
-PREFIX=24
 let "BATAS_AWAL-=1"
 
 while : ; do
