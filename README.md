@@ -5,10 +5,14 @@ RTSP Scanning merupakan tool yang digunakan unuk melakukan scanning pada Webcam 
 
 How To Use :
 
-Download from https://github.com/MrDoel/RTSP-Scanning
+Download : https://github.com/MrDoel/RTSP-Scanning
 
+$ git clone https://github.com/MrDoel/RTSP-Scanning.git
+
+$ cd RTSP-Scanning
 
 $ chmod +x RTSP-Scanning.sh
+
 $./RTSP-Scanning.sh
 
 Hasil :
