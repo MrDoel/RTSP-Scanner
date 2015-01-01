@@ -27,6 +27,36 @@ grn='\e[0;32m'
 lgrn='\E[1;32m'
 fin='\033[0m'
 
+function chkapp {
+if [ -x "/usr/share/nmap" ] && [ -x "/usr/bin/xsltproc" ] ; then
+	echo && echo -e "${lwh}Checking Application . . .${fin} "
+	sleep 1
+	echo -e "${grn}OK${fin}"
+	sleep 1
+else
+	xterm -e sudo apt-get install -y nmap 
+	xterm -e sudo apt-get install -y xsltproc
+	chkapp
+
+fi
+}
+
+function chkinet {
+    echo && echo -e "${lwh}Checking internet connection . . .${fin}";
+    
+    WGET="/usr/bin/wget"
+
+$WGET -q --tries=10 --timeout=5 http://www.google.com -O /tmp/index.google &> /dev/null
+if [ ! -s /tmp/index.google ];then
+    echo && echo -e "${rd}No internet connection! ${fin}"
+    echo && echo -e "exiting . .";sleep 2
+    exit
+else
+    echo && echo -e "${grn}Internet Connection Ok . . ${fin}";
+    sleep 1
+fi
+}    
+
 function head {
     clear
     echo -e " ${lrd}
@@ -44,6 +74,8 @@ function head {
 }
 
 #Baca Network ID
+chkinet
+chkapp
 head
 echo -e "${rd}Press ctrl+c to exit${fin}"
 echo
@@ -116,7 +148,7 @@ do
         *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Prefix ~> ";;
         esac
 done
-echo -e "${lgrn}Set Prefix -> /$PREFIX${fin}"
+echo -e "${lgrn}Set Prefix -> $NID1.$NID2.$BATAS_AKHIR.1/$PREFIX${fin}"
 
 let "BATAS_AWAL-=1"
 
