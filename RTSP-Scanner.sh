@@ -2,7 +2,7 @@
 
 ####################################
 # RTSP SCANNER                     #
-#      				   #
+#      							   #
 # Coded by Mr.Doel                 #
 # Contact me : doel@mc-crew.or.id  #
 ####################################
@@ -37,30 +37,31 @@ function head {
                ||     Malang Cyber Crew      ||
                ||                            ||
                ||     Coded by : Mr.Doel     ||
-               ||     http://mc-crew.or.id   ||
+               ||     doel@mc-crew.or.id     ||
+               ||                            ||
+               ||    http://mc-crew.or.id    ||
                --------------------------------${fin}"
 }
 
 #Baca Network ID
 head
-echo -n "Scanning Name ~> "
+echo -en "${lcyn}Scanning Name ~>${fin} "
 read COMPANY
-echo -n "Input Network ID (1) ~> "
+echo -en "{lcyn}Input Network ID (1) ~>${fin} "
 read NID1
-echo -n "Input Network ID (2) ~> "
+echo -en "{lcyn}Input Network ID (2) ~>${fin} "
 read NID2
-echo -n "Prefix ~> "
+echo -en "{lcyn}Prefix ~> "
 read PREFIX
-echo -n "Input Range Awal ~> "
+echo -en "{lcyn}Input Range Awal ~>${fin} "
 read BATAS_AWAL
-echo -n "Input Range Akhir ~> "
+echo -en "{lcyn}Input Range Akhir ~> ${fin}"
 read BATAS_AKHIR
 
 PREFIX=24
 let "BATAS_AWAL-=1"
 
 while : ; do
-	echo $BATAS_AWAL
 	let BATAS_AWAL=BATAS_AWAL+1
 	sudo nmap -p554,80 --script http-title --open $NID1.$NID2.$BATAS_AWAL.1/$PREFIX -oX $COMPANY$BATAS_AWAL.xml -T4 -v
 	sudo xsltproc $COMPANY$BATAS_AWAL.xml -o $COMPANY$BATAS_AWAL.html
