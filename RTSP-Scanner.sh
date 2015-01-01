@@ -77,7 +77,7 @@ function inti {
 while : ; do
 	let BATAS_AWAL=BATAS_AWAL+1
 	
-	if [ -x "/usr/local/bin/tomb" ]; then
+	if [ -x "/opt/hasil_scanning" ]; then
 	echo -e "Report will be save to ${grn}/opt/hasil_scanning${fin}"
 	else
 	sudo mkdir /opt/hasil_scanning
