@@ -77,13 +77,13 @@ function inti {
 while : ; do
 	let BATAS_AWAL=BATAS_AWAL+1
 	
-	if [ -x "/opt/hasil_scanning" ]; then
-	echo -e "Report will be save to ${grn}/opt/hasil_scanning${fin}"
+	if [ -x "/opt/Report_RTSP" ]; then
+	echo -e "Report will be save to ${grn}/opt/Report_RTSP${fin}"
 	else
-	sudo mkdir /opt/hasil_scanning
-	sudo chown $USER:$USER /opt/hasil_scanning
+	sudo mkdir /opt/Report_RTSP
+	sudo chown $USER:$USER /opt/Report_RTSP
 	fi
-	cd /opt/hasil_scanning
+	cd /opt/Report_RTSP
 	sudo nmap -p554,80 --script http-title --open $NID1.$NID2.$BATAS_AWAL.1/$PREFIX -oX $COMPANY$BATAS_AWAL.xml -T4 -v
 	sudo xsltproc $COMPANY$BATAS_AWAL.xml -o $COMPANY$BATAS_AWAL.html
 	sudo rm $COMPANY$BATAS_AWAL.xml
