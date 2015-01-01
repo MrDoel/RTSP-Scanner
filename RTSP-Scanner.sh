@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 ####################################
-# RTSP SCANNING                    #
+# RTSP SCANNER                     #
 #      				   #
 # Coded by Mr.Doel                 #
 # Contact me : doel@mc-crew.or.id  #
@@ -31,7 +31,7 @@ function head {
     clear
     echo -e " ${lrd}
                --------------------------------
-               ||       RTSP SCANNING        ||
+               ||       RTSP SCANNER         ||
                ||      	                     ||
                ||                            ||
                ||     Malang Cyber Crew      ||
