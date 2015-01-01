@@ -47,28 +47,75 @@ function head {
 head
 echo -e "${rd}Press ctrl+c to exit${fin}"
 echo
+######Company Section######
 echo -en "${lcyn}Scanning Name ~>${fin} "
-read COMPANY
+regex=[A-Za-z]*
+regex2=[0-9]*
+while read COMPANY
+do
+        case "$COMPANY" in
+        $regex) break;;
+        *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Scanning Name ~>${fin} ";;
+        esac
+done
+
 echo -e "${lgrn}Set Company -> $COMPANY${fin}"
 
+######Network ID (1) Section######
 echo && echo -en "${lcyn}Input Network ID (1) ~>${fin} "
-read NID1
+while read NID1
+do
+        case "$NID1" in
+        $regex2) break;;
+        *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Input Network ID (1) ~>${fin} ";;
+        esac
+done
 echo -e "${lgrn}Set Network ID (1) -> $NID1.xxx.xxx.xxx${fin}"
 
+######Network ID (2) Section######
 echo && echo -en "${lcyn}Input Network ID (2) ~>${fin} "
-read NID2
+while read NID2
+do
+        case "$NID2" in
+        $regex2) break;;
+        *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Input Network ID (2) ~>${fin} ";;
+        esac
+done
 echo -e "${lgrn}Set Network ID (2) -> $NID1.$NID2.xxx.xxx${fin}"
 
+######Range Awal Section######
 echo && echo -en "${lcyn}Input Range Awal ~>${fin} "
-read BATAS_AWAL
-echo -e "${lgrn}Set Batas Awal -> $NID1.$NID2.$BATAS_AWAL.1/$PREFIX${fin}"
+while read BATAS_AWAL
+do
+        case "$BATAS_AWAL" in
+        $regex2) break;;
+        *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Input Range Awal ~>${fin} ";;
+        esac
+done
+echo -e "${lgrn}Set Batas Awal -> $NID1.$NID2.$BATAS_AWAL.1${fin}"
 
+
+######Range Akhir Section######
 echo && echo -en "${lcyn}Input Range Akhir ~> ${fin}"
-read BATAS_AKHIR
-echo -e "${lgrn}Set Batas Akhir -> $NID1.$NID2.$BATAS_AKHIR.1/$PREFIX${fin}"
+while read BATAS_AKHIR
+do
+        case "$BATAS_AKHIR" in
+        $regex2) break;;
+        *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Input Range Akhir ~>${fin} ";;
+        esac
+done
+echo -e "${lgrn}Set Batas Akhir -> $NID1.$NID2.$BATAS_AKHIR.1${fin}"
 
+
+######Prefix Section######
 echo && echo -en "${lcyn}Prefix ~> "
-read PREFIX
+while read PREFIX
+do
+        case "$PREFIX" in
+        $regex2) break;;
+        *) echo -e "${rd}Not Valid Input!${fin}";echo -en "${lcyn}Prefix ~> ";;
+        esac
+done
 echo -e "${lgrn}Set Prefix -> /$PREFIX${fin}"
 
 let "BATAS_AWAL-=1"
