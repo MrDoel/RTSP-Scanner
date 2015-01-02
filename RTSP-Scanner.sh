@@ -41,6 +41,14 @@ else
 fi
 }
 
+function chkwget {
+    if [ -x "/usr/bin/wget" ]; then
+		cmd=doel
+	else
+		echo -e ${lrd}"\nUnable to find download manager(wget) " ${fin};sleep 1;echo -e "Installing wget. . "; apt-get install wget;echo && echo -e ${grn}"Wget Ok. ."${fin};sleep 1
+	fi
+}
+
 function chkinet {
     echo && echo -e "${lwh}Checking internet connection . . .${fin}";
     
@@ -74,9 +82,11 @@ function head {
 }
 
 #Baca Network ID
+chkwget
 chkinet
 chkapp
 head
+function main {
 echo -e "${rd}Press ctrl+c to exit${fin}"
 echo
 ######Company Section######
@@ -152,7 +162,7 @@ echo -e "${lgrn}Set Prefix -> $NID1.$NID2.$BATAS_AKHIR.1/$PREFIX${fin}"
 
 let "BATAS_AWAL-=1"
 
-function inti {
+
 while : ; do
 	let BATAS_AWAL=BATAS_AWAL+1
 	
@@ -163,17 +173,19 @@ while : ; do
 	sudo chown $USER:$USER /opt/Report_RTSP
 	fi
 	cd /opt/Report_RTSP
-	sudo nmap -p554,80 --script http-title --open $NID1.$NID2.$BATAS_AWAL.1/$PREFIX -oX $COMPANY$BATAS_AWAL.xml -T4 -v
+	sudo nmap -p554,80 -sV --script http-title --open $NID1.$NID2.$BATAS_AWAL.1/$PREFIX -oX $COMPANY$BATAS_AWAL.xml -T4 -v
 	sudo xsltproc $COMPANY$BATAS_AWAL.xml -o $COMPANY$BATAS_AWAL.html
 	sudo rm $COMPANY$BATAS_AWAL.xml
 	if [ $BATAS_AWAL -eq $BATAS_AKHIR ]
 		then
 			break
 	fi
-done	
+done
+
+main	
 }
 
-inti
+main
 
 
 
